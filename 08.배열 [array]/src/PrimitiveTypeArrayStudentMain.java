@@ -40,7 +40,7 @@ public class PrimitiveTypeArrayStudentMain {
 		// - 0번 학생의 석차 계산
 		for (int i = 0; i < noArray.length; i++) {
 			
-			for (j = 0; j < noArray.length; j++) {
+			for (int j = 0; j < noArray.length; j++) {
 				if (totArray[0] < totArray[j]) {
 					rankArray[0]++;
 				} 
