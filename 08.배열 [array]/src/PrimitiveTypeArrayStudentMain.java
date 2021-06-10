@@ -6,7 +6,7 @@ public class PrimitiveTypeArrayStudentMain {
 		
 		
 		// < 배열 객체의 초기화 >
-		System.out.println("===== 학생 데이터를 저장하기 위한 객체 생성 초기화 =====");
+		System.out.println("======= 학생 데이터를 저장하기 위한 객체 생성 초기화 =======");
 		int[] noArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		String[] nameArray = {"Kim", "Lee", "Park", "Kwon", "Song", "Namgung", "Hwang", "Jang", "Jeong", "Hong"};
 		int[] korArray = {78, 56, 12, 91, 67, 88, 93, 67, 99, 56};
