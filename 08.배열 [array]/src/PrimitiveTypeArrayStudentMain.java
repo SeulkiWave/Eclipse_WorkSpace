@@ -4,6 +4,7 @@ public class PrimitiveTypeArrayStudentMain {
 
 	public static void main(String[] args) {
 		
+		System.out.println("test");
 		
 		// < 배열 객체의 초기화 >
 		System.out.println("======= 학생 데이터를 저장하기 위한 객체 생성 초기화 =======");
