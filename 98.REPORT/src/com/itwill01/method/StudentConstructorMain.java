@@ -7,7 +7,8 @@ public class StudentConstructorMain {
 		// 기존의 Student 외 새로 연습하려고 Student2 클래스를 만들었습니다...
 		
 		// 학생 객체 3명 생성
-		Student2 stu1, stu2, stu3;
+		Student2 stu1;
+		Student2 stu2, stu3;
 		
 		// 기본 생성자를 사용한 학생1의 객체 생성
 		stu1 = new Student2();
