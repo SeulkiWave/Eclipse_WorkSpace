@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 /*
  배열 (타입)  
 	- 같은 자료형을 가진 기억장소 여러개의 모음 
