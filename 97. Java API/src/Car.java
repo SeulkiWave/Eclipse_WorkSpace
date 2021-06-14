@@ -17,9 +17,20 @@
  * }
  */
 
+/**
+ * 
+ * 이 클래스는 주차장에서 차 객체를 생성하기 위한 클래스 입니다.
+ * @author SeulkiWave
+ * @version 20210614
+ * @since 20210614
+ *
+ */
 public class Car {
 
 	// 멤버 변수 (=멤버 필드, 속성)
+	/**
+	 * 차량 번호, 입차 시간, 출차 시간, 요금 저장 필드
+	 */
 	String no;
 	int inTime;
 	int outTime;

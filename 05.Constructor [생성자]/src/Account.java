@@ -12,11 +12,21 @@ public class Account {
 	/*
 	 * 생성자
 	 */
-	// 기본 생성자
+	/**
+	 * reset the data for object the "account"
+	 */
 	public Account() {		
 	}
 	
 	// 인자 4개를 받는 자작 생성자~
+	/**
+	 * constructor including the four instance variable
+	 * and making the account object
+	 * @param no :: account number
+	 * @param owner :: account owner's name
+	 * @param balance :: account's balance
+	 * @param rate :: Bank rate
+	 */
  	public Account(int no, String owner, int balance, double rate) {
 		this.no = no;
 		this.owner = owner;
