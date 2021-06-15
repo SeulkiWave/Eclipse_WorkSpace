@@ -8,18 +8,28 @@ public class LottoMain {
 		
 		int[] num = new int[6];
 		
+		/*
 		for (int i = 0; i<num.length; i++) {
 			num[i] = (int)(Math.random()*45+1);
 			
 		}
+		*/
+		
+		
+		for (int i = 0; i < num.length;) {
+			
+			num[i] = (int)(Math.random()*45+1);
+			
+			// 아악~
+			
+		}
 		
 		for (int i = 0; i < num.length; i++) {
-			System.out.print(num[i]+" ");
+			System.out.printf("%d ", num[i]);
 		}
 		
 		System.out.println();
 		
-		
-	}
+	} // main end
 
-}
+} // class end
