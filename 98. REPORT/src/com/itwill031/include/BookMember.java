@@ -6,9 +6,7 @@ public class BookMember {
 	private int phone;
 	private String name;
 	private Book[] borrow;
-	// 대여 가능한 책을 3권으로 한정시킬 수 있을까?
-	// 내 머리 속 이론,,: 초기화된 상태에서 직접 인덱스에 값을 대입하지 않으면 null (안 빌린 책의 상태)
-	// 				인덱스에 값을 대입햇다면 그건 빌린 거 ..
+	// 대여 가능한 책을 3권으로 한정시킬 수 있을까? Book[] books = new Book[3]; Book 클래스의 배열 객체 3개 가지는 "주소값"을 가진 Book 배열 객체 ! (좀더간략히줄이기)
 	
 	// 생성자
 	public BookMember() {}
