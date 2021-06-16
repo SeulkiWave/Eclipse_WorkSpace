@@ -1,5 +1,5 @@
 
-public class AccountEncapsulationMain {
+public class AccountEncapsulationMain extends Object {
 
 	public static void main(String[] args) {
 		
@@ -47,7 +47,9 @@ public class AccountEncapsulationMain {
 		account2.print();
 		
 		
-		System.out.println("account2의 이율: "+account1.getRate()+"원"); 
+		System.out.println("account2의 이율: "+account1.getRate()+"원");
+		
+		
 		
 	}
 

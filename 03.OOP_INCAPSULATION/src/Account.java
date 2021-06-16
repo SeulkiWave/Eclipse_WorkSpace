@@ -90,5 +90,10 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	@Override
+	public String toString() {
+		return this.no+"\t"+this.owner+"\t"+this.balance;
+	}
+	
 	
 }

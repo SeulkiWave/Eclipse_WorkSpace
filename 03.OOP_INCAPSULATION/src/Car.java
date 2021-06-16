@@ -82,6 +82,14 @@ public class Car {
 	public int getFee() {
 		return fee;
 	}
+
+	@Override
+	public String toString() {
+		return "Car [no=" + no + ", inTime=" + inTime + ", outTime=" + outTime + ", fee=" + fee + ", getNo()=" + getNo()
+				+ ", getInTime()=" + getInTime() + ", getOutTime()=" + getOutTime() + ", getFee()=" + getFee()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
 	
 	
 
