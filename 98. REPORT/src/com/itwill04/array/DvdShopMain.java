@@ -4,8 +4,6 @@ public class DvdShopMain {
 
 	public static void main(String[] args) {
 		
-		
-		
 		// DVD 객체..
 		// 3개까지만 대여 가능..
 		Dvd[] dvds = new Dvd[3];
