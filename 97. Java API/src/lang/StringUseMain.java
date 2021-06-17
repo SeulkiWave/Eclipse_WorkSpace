@@ -7,6 +7,8 @@ public class StringUseMain {
 		String str1 = "Have a nice day!";
 		String str2 = "목 - 추상 클래스";
 		
+		
+		
 		System.out.println(" Length; ==============================");
 		
 		int length1 = str1.length();
@@ -16,6 +18,8 @@ public class StringUseMain {
 		
 		int length3 = "피곤하다!".length();
 		System.out.println(length3);
+		
+		
 		
 		System.out.println(" Null, \"\": ==============================");
 
@@ -27,6 +31,8 @@ public class StringUseMain {
 		if (id == null || id.equals("")) {
 			System.out.println("아이디를 입력ㅎ ㅐ");
 		}
+		
+		
 		
 		System.out.println(" String.substring: ==============================");
 		
@@ -50,6 +56,8 @@ public class StringUseMain {
 		System.out.println("Have a nice day!!!".substring(7, 11).length());
 		System.out.println(str2.substring(2));
 		System.out.println(str2.substring(3, 5));
+		
+		
 		
 		System.out.println(" String.charAt(index): ==============================");
 		
@@ -87,6 +95,7 @@ public class StringUseMain {
 		String[] idArray = {"guard", "7up", "test", "dkdf", "mt id", "%super%", "가나다", "aaaaaaaaa", "c"};
 		
 		for (int i = 0; i < idArray.length; i++) {
+			boolean isID = false;
 			
 			for (int j=0; j < idArray[i].length(); j++){
 				if (idArray[i].charAt(j) >= '0' && idArray[i].charAt(j)<= '9' || idArray[i].charAt(j)>= 'A' && idArray[i].charAt(j) <= 'Z' || idArray[i].charAt(j) >= 'a' && idArray[i].charAt(j) <= 'z'){
@@ -107,6 +116,8 @@ public class StringUseMain {
 			
 		}
 		
+		
+		
 		System.out.println(" String.split(index): ==============================");
 		String cardNum = "5389-2000-5296-1675";
 		String ssn = "123456-7891234";
@@ -125,6 +136,8 @@ public class StringUseMain {
 			System.out.println(i +" --> "+nameArray[i]);
 		}
 		
+		
+		
 		System.out.println(" String.replace(): ==============================");
 		String str3 = "우리는 자바를 공부합니다. 자바는 객체 지향 언어입니다.";
 		String result3 = str3.replace('자', '다');
@@ -132,13 +145,18 @@ public class StringUseMain {
 		System.out.println(str3.replace("자바", "파이썬"));
 		System.out.println(str3.replaceFirst("자바", "파이썬"));
 		
+		
 		System.out.println(" String.toUppercase / toLowercase: ==============================");
 		System.out.println("jaVA".toUpperCase());
 		System.out.println("jaVA".toLowerCase());
 		
+		
+		
 		System.out.println(" equals / equalsIgnoreCase: ==============================");
 		System.out.println("yes".equals("Yes"));
 		System.out.println("yes".equalsIgnoreCase("Yes"));
+		
+		
 		
 		System.out.println(" String.indexOf() : ==============================");
 		String fileName = "backup.zip";
@@ -150,6 +168,58 @@ public class StringUseMain {
 		
 		String copyFileName = fileNameNoExt+"-사본."+fileNameExt;
 		System.out.println("CopyFileName: "+copyFileName);
+		
+		
+		
+		System.out.println(" String.startWith / endWith : ==============================");
+		String fileName2 = "123.png";
+		if (fileName2.endsWith("png") || fileName2.endsWith(".jpg") || fileName2.endsWith(".bmp")) {
+			System.out.println(fileName2+"는 이미지 파일입니다.");
+		}
+		
+		String[] names = {"김슬기", "김대원", "황원탁", "우명지", "홍해현", "이혜지"};
+		int count = 0;
+		for (int i=0; i<names.length; i++) {
+			if (names[i].startsWith("김")) {
+				System.out.println(names[i]+" ");
+				count++;
+			}
+		}
+		String[] arrayKim = new String[count];
+		int index = 0; // if 안에서 index를 0으로 초기화시키면
+		// for문이 돌 때마다 계속 0으로 초기화가 된다.
+		// names[0], names[0], names[0] ... 으로 계속 덮어쓰기됨
+		// 그러므로 루프와 별개로 돌도록~ <<기억해!>>
+		for (int i = 0; i < names.length; i++) {
+			if (names[i].startsWith("김")) {
+				arrayKim[index] = names[i];
+				index++;
+			}
+		}
+		System.out.println("===================================");
+		for (int i = 0; i < arrayKim.length; i++) {
+			System.out.println(arrayKim[i]);
+		}
+		
+		
+		
+		System.out.println("String Trim ==============================");
+		String idStr = "   sorrowtic   ";
+		System.out.println(idStr.length()); // 공백을 포함한 길이
+		System.out.println(idStr.trim().length()); // 공백을 제거한 길이
+		String idStr2 = "   sorrow tic   ";
+		System.out.println(idStr2.trim());// 중간 공백은 제거하지 않는다
+		System.out.println(idStr2.trim().length()); // 공백을 제거한 길이
+		String spaceStr = "                  ";
+		if (spaceStr.trim().equals("")) { // null String 이거나
+			System.out.println("empty: [spaceStr.trim().equals()]");
+		}
+		if (spaceStr.trim().length() == 0) { // length가 0이거나~ (같은 의미)
+			System.out.println("empty: [spaceStr.trim().length()]");			
+		}
+		
+		
+		
 		
 		
 		
