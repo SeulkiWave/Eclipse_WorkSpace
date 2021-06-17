@@ -38,12 +38,15 @@ public class CarArrayMain {
 		
 		for (int i = 0; i < incars.length; i++) {
 			for (int j=0; j<carArray.length; j++) {
-				if(carArray[j] == null && j%10==1) { // 1번, 11번, 21번에 차 주차
+				if(carArray[j] == null && j%10==0) { // 인덱스 1번, 11번, 21번에 차 주차
+					// 이거 인덱스는 0번부터 시작하는 거 까먹고 j%10 == 1에 둬서 자꾸 2번 12번 22번에 들어가고 잇엇다 (7777번 차량 출력 안 됨..)
 					carArray[j] = incars[i];
 					break;
 				}
 			}
 		}
+		
+		Car.headerPrint();
 		
 		for (int i = 0; i < carArray.length; i++) {
 			if (carArray[i] != null) {
@@ -51,22 +54,55 @@ public class CarArrayMain {
 			}
 		}
 		
-		/*
-		 * 1. 차량 객체 생성
-		 * 2. 빈자리(null) 찾아서 대입
-		 */
-		
 		System.out.println("5. 차량번호 7789번 차 1대 정보 출력 ===============");
-		System.out.println("6. 입차시간 10시 이후 차량 여러대 찾아서 정보 출력 =====");
-		System.out.println("7. 2389번 차량 12시 출차 ====================");
 		/*
-		 * 1. 2389번차량찾기
-		 * 2. 출차
-		 * 3. 영수증출력
-		 * 4. 주차에서 차량삭제
-		 */
+		for (int i = 0; i < carArray.length; i++) { // 이거!! 배열에 null이 있다는 걸 까먹음!
+			if (carArray[i].getNo().equals("7789")) { // 타고 들어가는 걸 잘 써먹자...
+				// 아까 carArray[i].equals("7789")라고 써놔서 이거 관계 없지 않냐는 경고가 떳음.. 비교하는 대상을 명확하게 기억하기!
+				// carArray[i].equals(obj) 는 obj의 문자열과 carArray i번 인덱스를 비교하라고 하는거.. 문자열과 주소값을 비교한 셈?
+				carArray[i].print();
+				break;
+			}
+		}
+		*/
+		Car.headerPrint();
+		// 고려해야 할 사항들 : carArray에는 null이 있다.. (exception발생) --> 데이터가 있는 객체만 비교하기?
+		for (int i=0; i<carArray.length; i++) {
+			if (carArray[i] != null) { // null이 아닌 애들만 꺼내기!
+				if (carArray[i].getNo().equals("7789")){
+					carArray[i].print();
+				}
+			}
+		}
 		
 		
-	}
+		System.out.println("6. 입차시간 10시 이후 차량 여러대 찾아서 정보 출력 ====="); // 얘도 null!
+		Car.headerPrint();
+		for (int i = 0; i < carArray.length; i++) {
+			if (carArray[i] != null) { // null이 아닌 애들만 꺼내기!
+				if (carArray[i].getInTime() > 10) {
+					carArray[i].print();
+				}
+			}
+		}
+		
+		System.out.println("7. 2389번 차량 12시 출차 ====================");
+		Car.headerPrint();
+		
+		for (int i = 0; i < carArray.length; i++) {
+			if (carArray[i] != null) { // 이거 굳이... null을 걸러내려고 계속 if를 꺼내지 말고 값을 가진 배열 객체만 저장하는 유효 데이터 배열 객체를 따로 만들면 안 되나?
+				// 4번에서 했던 배열에 배열 대입을 사용해보기.. (아침에..)
+				if (carArray[i].getNo().equals("2389")) { // 2389 번 차량 찾기
+					carArray[i].setOutTime(12); // 출차 시간 입력 - 요금계산도 같이 해주장
+					carArray[i].calculateFee(); // 계산
+					carArray[i].print(); // 영수증 출력
+					carArray[i] = null; // 차량 값 삭제 . . .  . ? 이렇게 . . . ?
+					// 여기에 break를 굳이 넣을 필요는 없는듯
+				}
+				
+			}
+		}
+		
+	} // main end
 
-}
+} // class end
