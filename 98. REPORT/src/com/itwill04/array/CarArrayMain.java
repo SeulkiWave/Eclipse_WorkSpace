@@ -30,15 +30,16 @@ public class CarArrayMain {
 		System.out.println("3. 주차 가능 주차 구획 수 ====================");
 		System.out.println((carArray.length-possicount)+"구역");
 		
-		System.out.println("4. 입차 ==============================");
+		System.out.println("4. 입차 =============================="); // random 도 써보장~ 
 		Car[] incars = new Car[3]; // 새로운 차량 객체 생성..
 		incars[0] = new Car("5843", 13);
 		incars[1] = new Car("3975", 16);
-		incars[2] = new Car("7777", 10);
+		incars[2] = new Car("7777", 10); // 이걸 for 안에서 생성과 동시에 들어가도록 설정하기.. 여러대는 어떻게?
 		
 		for (int i = 0; i < incars.length; i++) {
 			for (int j=0; j<carArray.length; j++) {
 				if(carArray[j] == null && j%10==0) { // 인덱스 1번, 11번, 21번에 차 주차
+					// 이거 논리 연산자를 따질 때 앞쪽꺼가 false면 무조건 뒤쪽거를 안 봄 --> exception 발생 X
 					// 이거 인덱스는 0번부터 시작하는 거 까먹고 j%10 == 1에 둬서 자꾸 2번 12번 22번에 들어가고 잇엇다 (7777번 차량 출력 안 됨..)
 					carArray[j] = incars[i];
 					break;
@@ -68,8 +69,8 @@ public class CarArrayMain {
 		Car.headerPrint();
 		// 고려해야 할 사항들 : carArray에는 null이 있다.. (exception발생) --> 데이터가 있는 객체만 비교하기?
 		for (int i=0; i<carArray.length; i++) {
-			if (carArray[i] != null) { // null이 아닌 애들만 꺼내기!
-				if (carArray[i].getNo().equals("7789")){
+			if (carArray[i] != null) { // null이 아닌 애들만 꺼내기! <-- 나쁜코드 ㅠㅠ
+				if (carArray[i].getNo().equals("7789")){ // boolean 연산자... -> 이거 &&로도 할 수 잇다~
 					carArray[i].print();
 				}
 			}
