@@ -4,7 +4,8 @@ public class StudentArrayMain {
 
 	public static void main(String[] args) {
 
-		Student[] student = { new Student(1, "AAA", 41, 16, 35), new Student(2, "BBB", 98, 78, 84),
+		Student[] student = {
+				new Student(1, "AAA", 41, 16, 35), new Student(2, "BBB", 98, 78, 84),
 				new Student(3, "CCC", 37, 91, 19), new Student(4, "DDD", 48, 94, 75), new Student(5, "EEE", 98, 84, 87),
 				new Student(6, "FFF", 78, 98, 99), new Student(7, "GGG", 75, 78, 98), new Student(8, "HHH", 78, 78, 68),
 				new Student(9, "III", 48, 58, 98), };
