@@ -25,23 +25,28 @@ public class AccountService {
 	/*
 	 * 0.계좌객체를 인자로받아서 Account[]에추가[OPTION]
 	*/
-	public void addAccount(Account newAccount) { // 이거 this를 써서도 바꿀 수 있을까... 아래에 만든 건 좀 더럽다
-		/* 1.배열크기증가
-		 *   - 기존배열보다큰배열생성
-		 *   - 기존데이타 옮김
-		 */
+	public void addAccount(Account newAccount) {
 		
+		Account[] tempAcc = new Account[accounts.length+1];
+		for (int i = 0; i < accounts.length; i++) { // tempAcc.length가 아님!!!!!
+			tempAcc[i] = accounts[i];
+		}
+		tempAcc[tempAcc.length-1] = newAccount; // 인덱스 잘 기억해!!! 9번이 9번이 아님! 0번부터 9번이라 실질적 10번임!!!
+		this.accounts = tempAcc; // 주소값 대입!!! + 로컬 변수를 멤버 변수로 만들어주는 대입 과정까지!
+		
+		/*
 		Account[] accTemp = new Account[accounts.length+1]; // 큰 임시 배열을 만든 후에
-		for (int i = 0; i < accTemp.length; i++) {
+		
+		for (int i = 0; i < accTemp.length-1; i++) {
 			accTemp[i] = accounts[i]; // 미리 값을 옮겨둔 후
 		}
 		
 		Account[] accounts = new Account[accTemp.length]; // 원래 배열을 늘린 다음.. 
-		for (int i = 0; i < accounts.length; i++) {
+		for (int i = 0; i < accounts.length-1; i++) {
 			accounts[i] = accTemp[i]; // 전부 대입 후
 		}
-		
 		accounts[accounts.length] = newAccount; // 마지막 칸에 새 객체 대입?
+		*/	
 		
 	}
 	/*
@@ -54,6 +59,9 @@ public class AccountService {
 		 *   - 기존데이타 옮김
 		 */
 		
+		Account newAccount = new Account (no, owner, balance, iyul);
+		this.addAccount(newAccount);
+		/*
 		Account[] accTemp = new Account[accounts.length+1];
 		for (int i = 0; i < accTemp.length; i++) {
 			accTemp[i] = accounts[i];
@@ -65,6 +73,7 @@ public class AccountService {
 		}
 		
 		accounts[accounts.length].setAccountData(no, owner, balance, iyul);
+		*/
 	}
 	
 	/*
@@ -86,7 +95,6 @@ public class AccountService {
 		for (int i = 0; i < accounts.length; i++) {
 			accounts[i].print();
 		}
-		
 	}
 		
 	
@@ -94,15 +102,12 @@ public class AccountService {
 	 * 3.은행계좌들 총 잔고 출력메쏘드 정의
 	 */
 	public void totBalancePrint() {
-		System.out.println("< 계좌 잔고 > ----------------------------------------");
-		
+		System.out.println("< 계좌 잔고 > ------------------------------");
 		for (int i = 0; i < accounts.length; i++) {
-			System.out.printf("계좌번호: %s ------------------------------", accounts[i].getNo());
-			accounts[i].getBalance();
+			System.out.printf("계좌번호: %s ----- 계좌 잔고: %d", accounts[i].getNo(), accounts[i].getBalance());
+			System.out.println();
 		}
-		
 	}
-	
 	
 	/*
 	 4.계좌번호 인자로받아서 계좌한개출력
@@ -137,14 +142,14 @@ public class AccountService {
 	public void findByIyulPrint(double iyul) {
 		
 		for (int i = 0; i < accounts.length; i++) {
-			if(accounts[i].getBalance()>iyul) {
+			if(accounts[i].getIyul()>iyul) {
 				accounts[i].print();
 			}
 		}
 		
 	}
 	/*
-	7.계좌주이름 인자로 받아서 인자이름과동일한 계좌들출력
+	7. 계좌주 이름 인자로 받아서 인자 이름과 동일한 계좌들출력
 	 */ 
 	public void findByNamePrint(String name) {
 		for (int i = 0; i < accounts.length; i++) {
@@ -165,6 +170,7 @@ public class AccountService {
 		for (int i = 0; i < accounts.length; i++) {
 			if (accounts[i].getNo() == no) {
 				accounts[i].deposit(m);
+				
 				break;
 			}
 		}
@@ -178,6 +184,7 @@ public class AccountService {
 		for (int i = 0; i < accounts.length; i++) {
 			if (accounts[i].getNo() == no) {
 				accounts[i].withDraw(m);
+				
 				break;
 			}
 		}
@@ -185,33 +192,61 @@ public class AccountService {
 	
 	/*
 	 10.<< 정렬 >>
-	 * standard --> 1:번호,2:이름,3:잔고,4:이율
-	 * order    --> 1:오르차순,2:내림차순
+	 * standard --> 1:번호, 2:이름, 3:잔고, 4:이율
+	 * order    --> 1:오름차순, 2:내림차순
 	 */
-	
+	public void sortStandardNumberDown() {
+		for (int i = 0; i < accounts.length-1; i++) {
+			if (accounts[i].getNo() > accounts[i+1].getNo()) {
+				Account tempAcc = accounts[i+1];
+				accounts[i+1] = accounts[i];
+				accounts[i] = tempAcc;
+			}
+		}
+	}
 	
 	/*
 	 10.계좌를 잔고순으로 오름차순정렬
 	 */
 	public void sortByBalanceAscending() {
-		
+		for (int i = 0; i < accounts.length-1; i++) {	
+			for (int j = 0; j < accounts.length-1; j++) {
+				if(accounts[j].getBalance() > accounts[j+1].getBalance()) {
+					Account temAccount = accounts[j+1];
+					accounts[j+1] = accounts[j];
+					accounts[j] = temAccount;
+				}
+			}
+		}
 	}
 	/*
 	 11.계좌를 잔고순으로 내림차순정렬
 	 */
 	public void sortByBalanceDescending() {
-		
+		for (int i = 0; i < accounts.length-1; i++) {	
+			for (int j = 0; j < accounts.length-1; j++) {
+				if(accounts[j].getBalance() < accounts[j+1].getBalance()) {
+					Account temAccount = accounts[j+1];
+					accounts[j+1] = accounts[j];
+					accounts[j] = temAccount;
+				}
+			}
+		}
 	}	
 	/*
-	12.계좌객체를 인자로 받아서 이름,잔고,이율 수정(update)[OPTION]
+	12. 계좌 객체를 인자로 받아서 이름, 잔고, 이율 수정 (update) [OPTION]
 	*/
 	public void updateAccount(Account updateAccount) {
-		
+		for (int i = 0; i < accounts.length; i++) {
+			accounts[i] = updateAccount; // 흠;
+			break;
+		}
 	}
 	/*
-	13.번호,이름,잔고,이율 인자로받아서 계좌객체수정(update)[OPTION]
+	13. 번호, 이름, 잔고, 이율 인자로 받아서 계좌 객체 수정 (update) [OPTION]
 	*/
 	public void updateAccount(int no,String owner,int balance,double iyul) {
-		
+		Account updateAccount = new Account(no, owner, balance, iyul);
+		this.updateAccount(updateAccount);
 	}
 }
