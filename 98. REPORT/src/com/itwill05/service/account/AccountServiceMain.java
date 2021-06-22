@@ -6,7 +6,11 @@ public class AccountServiceMain {
 		
 		
 		System.out.println("0.AccountService객체야 Account추가(배열사이즈증가)[OPTION]");
+<<<<<<< HEAD
 		Account testAcc = new Account(1234, "KIM", 1680, 9.0);
+=======
+		Account testAcc = new Account();
+>>>>>>> branch 'master' of https://github.com/seulkikimwave/Eclipse_WorkSpace
 		accountService.addAccount(testAcc);
 		
 		/*

@@ -45,6 +45,7 @@ public class AccountService {
 		for (int i = 0; i < accounts.length-1; i++) {
 			accounts[i] = accTemp[i]; // 전부 대입 후
 		}
+<<<<<<< HEAD
 		accounts[accounts.length] = new Account; // 마지막 칸에 새 객체 대입?
 		*/	
 		
@@ -204,6 +205,164 @@ public class AccountService {
 					accounts[i+1] = accounts[i];
 					accounts[i] = tempAcc;	
 				}
+=======
+		accounts[accounts.length] = newAccount; // 마지막 칸에 새 객체 대입?
+		*/	
+		
+	}
+	/*
+	 * 0.계좌데이타를 인자로받아서 Account[]에추가[OPTION]
+	*/
+	public void addAccount(int no,String owner,int balance,double iyul) {
+		/*
+		 * 1.배열크기증가
+		 *   - 기존배열보다큰배열생성
+		 *   - 기존데이타 옮김
+		 */
+		
+		Account newAccount = new Account (no, owner, balance, iyul);
+		this.addAccount(newAccount);
+		/*
+		Account[] accTemp = new Account[accounts.length+1];
+		for (int i = 0; i < accTemp.length; i++) {
+			accTemp[i] = accounts[i];
+		}
+		
+		Account[] accounts = new Account[accTemp.length];
+		for (int i = 0; i < accounts.length; i++) {
+			accounts[i] = accTemp[i];
+		}
+		
+		accounts[accounts.length].setAccountData(no, owner, balance, iyul);
+		*/
+	}
+	
+	/*
+	 1.은행 계좌들의 총 계좌 수 출력 메소드 정의
+	 */
+	public void totAccountNumberPrint() {
+		int count = 0;
+		for (int i = 0; i < accounts.length; i++) {
+			count++;
+		}
+		System.out.println(count);
+	}
+	/*
+	 * 2.은행계좌들 전체출력메쏘드 정의
+	 */
+	public void print() {
+		Account.headerPrint();
+		
+		for (int i = 0; i < accounts.length; i++) {
+			accounts[i].print();
+		}
+	}
+		
+	
+	/*
+	 * 3.은행계좌들 총 잔고 출력메쏘드 정의
+	 */
+	public void totBalancePrint() {
+		System.out.println("< 계좌 잔고 > ------------------------------");
+		for (int i = 0; i < accounts.length; i++) {
+			System.out.printf("계좌번호: %s ----- 계좌 잔고: %d", accounts[i].getNo(), accounts[i].getBalance());
+			System.out.println();
+		}
+	}
+	
+	/*
+	 4.계좌번호 인자로받아서 계좌한개출력
+	 */
+	public void findByNoPrint(int no) {
+		
+		System.out.println("계좌번호: "+no+"----------------------------------------");
+		
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i].getNo() == no) {
+				accounts[i].print();
+				break;
+			}
+		}	
+	}
+	
+	/*
+	 *  5.계좌잔고 인자로 받아서 잔고이상인 계좌들출력
+	 */
+	public void findByBalancePrint(int balance) {
+		
+		for (int i = 0; i < accounts.length; i++) {
+			if(accounts[i].getBalance() >= balance) {
+				accounts[i].print();
+			}
+		}
+		
+	}
+	/*
+	6.계좌이율 인자로 받아서 이율이상인 계좌들출력
+	*/ 
+	public void findByIyulPrint(double iyul) {
+		
+		for (int i = 0; i < accounts.length; i++) {
+			if(accounts[i].getIyul()>iyul) {
+				accounts[i].print();
+			}
+		}
+		
+	}
+	/*
+	7. 계좌주 이름 인자로 받아서 인자 이름과 동일한 계좌들출력
+	 */ 
+	public void findByNamePrint(String name) {
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i].getOwner().equals(name)) {
+				accounts[i].print();
+			}
+		}
+	}
+	/*
+	8.계좌번호,입금할돈 인자로 받아서 입금
+	 */ 
+	public void ipGum(int no,int m) {
+		/*
+		 * 1.계좌번호로 계좌찾기
+		 * 2.입금
+		 */
+		
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i].getNo() == no) {
+				accounts[i].deposit(m);
+				
+				break;
+			}
+		}
+		
+	}
+	/*
+	9.계좌번호,출금할돈 인자로 받아서 출금
+	 */ 
+	public void chulGum(int no,int m) {
+		
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i].getNo() == no) {
+				accounts[i].withDraw(m);
+				
+				break;
+			}
+		}
+	}
+	
+	/*
+	 10.<< 정렬 >>
+	 * standard --> 1:번호, 2:이름, 3:잔고, 4:이율
+	 * order    --> 1:오름차순, 2:내림차순
+	 */
+	public void sortStandardNumberDown() {
+		for (int i = 0; i < accounts.length-1; i++) {
+			if (accounts[i].getNo() > accounts[i+1].getNo()) {
+				Account tempAcc = accounts[i+1];
+				accounts[i+1] = accounts[i];
+				accounts[i] = tempAcc;
+>>>>>>> branch 'master' of https://github.com/seulkikimwave/Eclipse_WorkSpace
 			}
 		}
 	}
