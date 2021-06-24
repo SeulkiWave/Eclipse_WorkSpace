@@ -24,7 +24,7 @@ public class StudentArrayMain {
 			int j = i;
 			for (j = 0; j < student.length - 1; j++) {
 				if (student[i].getSum() < student[j].getSum()) {
-					student[i].setSum(student[i].getRank() + 1); // 이게 되네...
+					student[i].setRank(student[i].getRank() + 1); // 이게 되네...
 				} // if end
 			} // for j end
 		} // for end

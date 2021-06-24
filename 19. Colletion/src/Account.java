@@ -9,9 +9,7 @@ public class Account {
 	/*
 	 * 생성자
 	 */
-	public Account() {
-		// TODO Auto-generated constructor stub
-	}
+	public Account() {}
 	public Account(int no,String owner,int balance,double iyul) {
 		this.no=no;
 		this.owner=owner;
@@ -19,6 +17,10 @@ public class Account {
 		this.iyul=iyul;
 	}
 	
+	@Override
+	public String toString() {
+		return "Account [no=" + no + ", owner=" + owner + "]";
+	}	
 	
 	/*
 	 * 멤버메쏘드
@@ -52,12 +54,7 @@ public class Account {
 	public void print() {
 		System.out.printf("%d %6s %8d %5.1f %n", this.no, this.owner, this.balance, this.iyul);
 	}
-	
-	@Override
-	public String toString() {
-		return no +" "+owner+""+balance;
-	}
-	
+
 	//getter method
 	public int getBalance() {
 		return this.balance;
