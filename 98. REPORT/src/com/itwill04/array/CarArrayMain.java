@@ -98,7 +98,7 @@ public class CarArrayMain {
 					carArray[i].calculateFee(); // 계산
 					carArray[i].print(); // 영수증 출력
 					carArray[i] = null; // 차량 값 삭제 . . .  . ? 이렇게 . . . ?
-					// 여기에 break를 굳이 넣을 필요는 없는듯
+					break;
 				}
 				
 			}

@@ -10,6 +10,11 @@ public class Car {
 	private int outTime;//출차시간
 	private int fee;//주차요금
 	
+	@Override
+	public String toString() {
+		return "Car [no=" + no + ", inTime=" + inTime + "]";
+	}
+	
 	// 생성자
 	public Car() {}
 	public Car(String no, int inTime) {
