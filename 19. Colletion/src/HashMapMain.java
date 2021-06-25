@@ -38,15 +38,26 @@ public class HashMapMain {
 		System.out.println("map size: "+carMap.size());
 		
 		System.out.println(" * 전체 차량 출력 ------------------------------");
+		System.out.println("1. Set 으로 변경 후 Iterator");
 		Set keySet = carMap.keySet(); // 이게 Iterator가 가능하다고 하네요... map --> set
 		System.out.println(keySet);
 		Iterator keyIter = keySet.iterator();
 		while (keyIter.hasNext()) {
 			String key = (String) keyIter.next();
-			System.out.println(key); // key로 value 꺼내기..
+			// System.out.println(key); // key로 value 꺼내기..
 			Car carTemp = (Car) carMap.get(key);
 			carTemp.print();
 		}
+		
+		System.out.println("2. Key~");
+		Iterator keyIterator = carMap.keySet().iterator();
+		while(keyIterator.hasNext()) {
+			String key = (String) keyIterator.next();
+			Car tempCar = (Car) carMap.get(key);
+			tempCar.print();
+		}
+		
+		
 		
 		
 		System.out.println(" * 입차 ------------------------------");
@@ -58,8 +69,15 @@ public class HashMapMain {
 		getCar = (Car) carMap.get("3243");
 		getCar.print();
 		
-		System.out.println(" * 입차 시간 10시 이후인 차량 여러대의 정보 출력 ------------------------------");
-		
+		System.out.println(" * 입차 시간 15시 이후인 차량 여러대의 정보 출력 ------------------------------");
+		Iterator keyIter2 = carMap.keySet().iterator();
+		while(keyIter2.hasNext()) {
+			String key = (String) keyIter2.next();
+			Car tempCar = (Car) carMap.get(key);
+			if (tempCar.getInTime() >= 15) {
+				tempCar.print();
+			}
+		}
 		
 		System.out.println(" * 출차 ------------------------------");
 		getCar = (Car) carMap.get("3243");

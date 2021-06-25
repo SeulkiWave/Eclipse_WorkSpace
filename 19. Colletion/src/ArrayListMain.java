@@ -7,7 +7,7 @@ public class ArrayListMain {
 		
 		System.out.println("Object[] ==============================");
 		Object[] anyTypeArray = new Object [5];
-		// 참조변수가 들어감... Object가 아닌 객체 . . . Wrapper가 들어갈 수 없음! 기본형! 못 가!
+		// 참조변수가 들어감... Object가 아닌 객체... Wrapper가 들어갈 수 없음! 기본형! 못 가!
 		System.out.println(anyTypeArray); // Object 배열 객체는 있지만 Object 클래스는 없다! Object를 상속받고 length를 가짐~
 		Account acc1 = new Account (1111, "AAA", 300030,  9.15);
 		Account acc2 = new Account (2222, "BBB", 41698520,  0.51);
@@ -45,7 +45,7 @@ public class ArrayListMain {
 		System.out.println("# size: "+accList.size()); // 사이즈 증가~
 		
 		System.out.println(" SET : =============================="); // 값 설정~
-		accList.set(3, new Account(3337, "XXX", 418940, 11.1)); // 3번 인덱스에...... ~
+		accList.set(3, new Account(3337, "XXX", 418940, 11.1)); // 3번 인덱스에 해당 객체를 새로 생성해서 지정해줌.. 결국 참조~
 		System.out.println(accList);
 		System.out.println("# size: "+accList.size());
 		

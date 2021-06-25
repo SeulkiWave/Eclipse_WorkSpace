@@ -26,14 +26,10 @@ public class AccountServiceArrayList {
 		return accountList;
 	}
 	
-	/*
-	 * 계좌추가
-	 */
+	// 계좌추가
 	public void addAccount(Account account) {
 		
-		/*
-		 * 번호중복체크후 중복이면 호출한클래스에게 true,false를 반환해줌
-		 */
+		// 번호중복체크후 중복이면 호출한클래스에게 true,false를 반환해줌
 		accountList.add(account);
 	}
 	
