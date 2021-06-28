@@ -41,45 +41,63 @@ public class CarServiceHashMap {
 
 	// 1. 전체차량출력
 	public void print() {
-		
+		Car.headerPrint();
+		Iterator<String> keyIter = carMap.keySet().iterator();
+		while (keyIter.hasNext()) {
+			String keyCar = (String) keyIter.next();
+			System.out.println(keyCar);
+		}
 	}
 
-	/*
-	 * 5. 차량번호(4567번) 인자받아서 차객체한대 참조변수반환
-	 */
+	// 5. 차량 번호(4567번) 인자 받아서 차 객체 한 대 참조 변수 반환
 	public Car findByNo(String no) {
 		Car findCar =null;
+		Iterator<String> keyIter = carMap.keySet().iterator();
+		while (keyIter.hasNext()) {
+			String key = (String) keyIter.next();
+			if (carMap.get(key).getNo().equals(no)) {
+				findCar = carMap.get(key);
+				break;
+			}
+		}
 		return findCar;
 	}
 
-	/*
-	 * 6. 입차시간(8시이후)인자받아서 ArrayList(차객체배열) 참조변수반환
-	 */
+	// 6. 입차 시간 (8시 이후) 인자 받아서 ArrayList (차 객체 배열) 참조 변수 반환
 	public ArrayList<Car> findByInTime(int inTime) {
 		ArrayList<Car> findCars = new ArrayList<Car>();
-		
-		
+		Iterator<String> keyIter = carMap.keySet().iterator();
+		while (keyIter.hasNext()) {
+			String key= (String) keyIter.next();
+			if (carMap.get(key).getInTime() >= inTime) {
+				findCars.add(carMap.get(key));
+			}
+		}
 		return findCars;
 	}
 
-	/*
-	 * 7. 차량번호(7891번),출차시간(12시)인자로 받아서 출차";
-	 */
+	// 7. 차량 번호 (7891번), 출차 시간(12시) 인자로 받아서 출차;
 	public Car chulCha(String no, int outTime) {
 		Car removeCar= null;
-		
+		Iterator<String> keyIter = carMap.keySet().iterator();
+		while (keyIter.hasNext()) {
+			String key = (String) keyIter.next();
+			if (carMap.get(key).getNo().equals(no)) {
+				carMap.get(key).setOutTime(outTime);
+				carMap.get(key).calculateFee();
+				removeCar = carMap.get(key);
+				carMap.remove(key);
+			}
+		}
 		return removeCar;
 	}
-	/*
-	 * 2. 주차전체구획수반환 
-	 */
+	
+	// 2. 주차 전체 구획 수 반환
 	public int getParkingLotCount() {
 		return this.count;
 	}
 	
-	/*
-	  3. 주차가능주차구획수반환 
-	 */
+	// 3. 주차 가능 주차 구획 수 반환
 	public int getAvailableParkingLotCount() {
 		return count-carMap.size();
 	} 
