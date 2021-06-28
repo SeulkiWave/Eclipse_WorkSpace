@@ -2,6 +2,7 @@ package generic;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class GenericHashSetMain {
 
@@ -50,10 +51,48 @@ public class GenericHashSetMain {
 		
 		
 		
+		System.out.println("=============== S t r i n g ,  W r a p p e r ===============");
+		
+		System.out.println("S T R I N G - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		System.out.println("=============== ADD ===============");
+		Set<String> nameSet = new HashSet<String>();
+		nameSet.add(new String("AAA"));
+		nameSet.add("BBB");
+		nameSet.add("CCC");
+		nameSet.add("DDD");
+		nameSet.add("EEE");
+		System.out.println("# Name Set Size: "+nameSet.size());
+		System.out.println(nameSet);
+		
+		// 중복 추가
+		nameSet.add("AAA"); // set은 중복 안 됨~
+		System.out.println("# Name Set Size: "+nameSet.size());
+		System.out.println(nameSet);
+		
+		System.out.println("=============== REMOVE ===============");
+		System.out.println("Remove Name: "+nameSet.remove("AAA")); // 중복이면 삭제 안 됨... --> true // boolean 
+		System.out.println("# Name Set Size: "+nameSet.size());
+		System.out.println(nameSet);
+		
+		System.out.println("Remove Name: "+nameSet.remove("AAA")); // 중복이면 삭제 안 됨... --> false
+		System.out.println("# Name Set Size: "+nameSet.size());
+		System.out.println(nameSet);
+		
+		System.out.println("=============== ITERATION ===============");
+		Iterator<String> nameIter = nameSet.iterator();
+		while (nameIter.hasNext()) {
+			String nameTemp = nameIter.next();
+			System.out.println(nameTemp);
+		}
+		
+		System.out.println("W R A P P E R - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		System.out.println("=============== ADD ===============");
 		
 		
+		System.out.println("=============== REMOVE ===============");
 		
 		
+		System.out.println("=============== ITERATION ===============");
 		
 		
 	}

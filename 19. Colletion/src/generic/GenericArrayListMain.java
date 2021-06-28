@@ -45,17 +45,45 @@ public class GenericArrayListMain {
 		System.out.println("=============== < 업 무 실 행 > ===============");
 		System.out.println("1. 전체 출력");
 		for (int i = 0; i < accList.size(); i++) {
-			Account tempAcc = accList.get(i);
+			Account tempAcc = accList.get(i); // accList는 ArrayList 타입으로 들어가있으니까 Account 타입으로 꺼내주자~
 			tempAcc.print();
 		}
 		
 		System.out.println("========== < 계 좌 번 호  1 개 로  계 좌 찾 기 > ==========");
+		System.out.println("2. 계좌 번호로 계좌 찾기"); // 계좌 번호는 3333이라고 생각하자~
+		for (int i = 0; i < accList.size(); i++) {
+			Account tempAcc = accList.get(i);
+			if (tempAcc.getNo() == 3333) {
+				tempAcc.print();
+				break;
+			}
+		}
 		
 		System.out.println("========== < 계 좌 주  이 름 으 로  계 좌 찾 기 > ==========");
+		for (int i = 0; i < accList.size(); i++) {
+			Account findAcc = accList.get(i);
+			if (findAcc.getOwner().equals("AAA")) {
+				findAcc.print();
+			}
+		}
 		
 		System.out.println("========== < 계 좌 번 호 로  해 당  계 좌  삭 제 > ==========");
+		for (int i = 0; i < accList.size(); i++) {
+			Account delAcc = accList.get(i);
+			if (delAcc.getNo() == 3333) {
+				accList.remove(i); // 이렇게 위로 갔다 아래로 가는 게 맞는지...
+				break;
+			}
+		}
 		
 		System.out.println("========== < 계 좌 주  이 름 으 로  여 러 개 의  계 좌 삭 제 > ==========");
+		for (int i = 0; i < accList.size(); i++) {
+			Account delAcc = accList.get(i);
+			if (delAcc.getOwner().equals("AAA")) {
+				accList.remove(i);
+				i--;
+			}
+		}
 		
 		System.out.println("=============== < I T E R A T O R : 전 체 출 력 > ===============");
 		Iterator<Account>accIter = accList.iterator();
@@ -68,13 +96,96 @@ public class GenericArrayListMain {
 			// 이거 Iterator로 선언할 때 Account형으로 강제 캐스팅 해줬으니까 accIter.next().print(); 도 쓸 수 잇음!!!!!!1
 		}
 		
+		System.out.println("=============== S t r i n g ,  W r a p p e r ===============");
+		
+		System.out.println("S T R I N G - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		ArrayList <String> nameList = new ArrayList<String>();
+		nameList.add("AAA");
+		nameList.add(new String ("BBB")); // 동일하다~
+		nameList.add("CCC");
+		nameList.add("DDD");
+		nameList.add("EEE");
+		nameList.add("FFF");
+		nameList.add("GGG");
+		nameList.add("HHH");
+		nameList.add("III");
+		nameList.add("III"); // ArrayList는 중복을 허용한다~ 
+		// String은 char[]이 같으면 같은 객체로 취급하지만 ArrayList라서 다른 참조 변수를 가진다!. 암튼 다 같이 들어감
+		System.out.println("# Name List Size: "+ nameList.size());
+		System.out.println(nameList);
+		
+		System.out.println("=============== ADD ===============");
+		nameList.add(3, "KKK");
+		System.out.println("# Name List Size: "+ nameList.size());
+		System.out.println(nameList);
+		
+		System.out.println("=============== REMOVE ===============");
+		String rmvName = nameList.remove(3);
+		System.out.println("Remove Name: "+rmvName);
+		System.out.println("# Name List Size: "+ nameList.size());
+		System.out.println(nameList);
+		
+		// String과 Wrapper는 Equals/HashCode 메소드가 재정의 되어있다...
+		// < boolean java.util.ArrayList.remove (Object o) >
+		// Removes the first occurrence of the specified element from this list, if it is present
+		// 동일한 결과의 객체 중 첫 번째 객체를 삭제한다~ (존재하면~)
+		boolean isRemove = nameList.remove(new String("FFF"));
+		System.out.println("# Name List Size: "+nameList.size());
+		System.out.println(nameList);
+		
+		nameList.remove("III"); // 결과가 동일한 객체 1개만 삭제된다~~
+		System.out.println("# Name List Size: "+nameList.size());
+		System.out.println(nameList);
 		
 		
+		System.out.println("W R A P P E R - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+		ArrayList<Integer> scoreList = new ArrayList<Integer>();
+		scoreList.add(new Integer(90));
+		scoreList.add(30);
+		scoreList.add(45);
+		scoreList.add(56);
+		scoreList.add(34);
+		scoreList.add(12);
+		scoreList.add(99);
+		scoreList.add(62);
+		scoreList.add(43);
+		scoreList.add(99); // 상위로 캐스팅 되는 걸 잘 생각해보기...
 		
+		System.out.println("=============== ADD ===============");
+		System.out.println(scoreList);
+		int scoreGet = scoreList.get(3); // --> 56 : 0번부 터 시 작 한   ㄷ ㅏ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// 들어가 있는 객체 : Integer --> Boxing(Wrapping) 돼서 들어간다~
+		// 꺼낼 때도 자동으로 unBoxing 돼서 나옴...
+		// 97. Java API \ lang \ wrap 참고하기 
+		System.out.println("Get Score: "+scoreGet);
 		
+		scoreGet = scoreList.get(1);
+		System.out.println("Get Score: "+ scoreList.get(1).intValue()); // 위와 아래가 동일하다~
+		// 사용하는 객체의 차이 + Boxing / UnBoxing 과정을 이해하기
+		/*
+		System.out.println("scoreList.get(1): "+ scoreGet);
+		Integer scoreInt = scoreList.get(1); // Generic~
+		scoreGet = scoreInt.intValue(); // auto UnBoxing
+		int score = scoreList.get(3); // generic --> auto Boxing
+		System.out.println("scoreList.get(3): "+score);
+		*/
 		
+		System.out.println("=============== SET ===============");
+		scoreList.set(3, 100);
+		System.out.println("# Set Size: "+scoreList.size());
+		System.out.println(scoreList);
 		
+		System.out.println("=============== REMOVE (int index) ===============");
+		scoreList.remove(3);
+		System.out.println("# Set Size: "+scoreList.size());
+		System.out.println(scoreList);
 		
-	}
+		System.out.println("=============== REMOVE (Object o) ===============");
+		scoreList.remove(new Integer(90));
+		// scoreList.remove(90); 는 90번 index가 사라진다~ : Exception
+		System.out.println("# Set Size: "+scoreList.size());
+		System.out.println(scoreList);
+		
+	} // M A I N   E N D
 
 }

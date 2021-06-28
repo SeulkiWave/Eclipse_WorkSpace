@@ -49,49 +49,25 @@ public class Car {
 	public void setOutTime(int outTime) {
 		this.outTime = outTime;
 	}
-
-
 	public String getNo() {
 		return no;
 	}
-
-
 	public void setNo(String no) {
 		this.no = no;
 	}
-
-
 	public int getInTime() {
 		return inTime;
 	}
-
-
 	public void setInTime(int inTime) {
 		this.inTime = inTime;
 	}
-
-
 	public int getFee() {
 		return fee;
 	}
-
-
 	public void setFee(int fee) {
 		this.fee = fee;
 	}
-
-
 	public int getOutTime() {
 		return outTime;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

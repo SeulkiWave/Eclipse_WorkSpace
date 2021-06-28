@@ -1,40 +1,38 @@
 package com.itwill06.collection.car;
 
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class CarServiceHashMap {
 	
-	private HashMap<String,Car> carMap;
+	private HashMap<String,Car> carMap; // Map은 key값과 Value를 함께 갖는다. . ..
 	private int count;// 주차장 구획수
 
-	public CarServiceHashMap() {
+	public CarServiceHashMap() { // 기본 생성자
 		carMap = new HashMap<String,Car>();
 		count = 30;
 	}
 
-	public CarServiceHashMap(int count) {
+	public CarServiceHashMap(int count) { // 구획 수를 정해주는 생성자~
 		carMap = new HashMap<String,Car>();
 		this.count = count;
 	}
 
-	/*
-	 * 0. 차객체인자로받아서 입차후 성공실패여부반환 
-	 *   - 주차장이 만차이면 입차실패
-	 */
+	// 0. 차 객체 인자로 받아서 입차 후 성공-실패 여부 반환 
+	// - 주차장이 만차이면: count>= carMap.size() 입차 실패!
 	public boolean ipCha(Car inCar) {
-		boolean isSuccess = false;
-		
+		if (count < carMap.size() && inCar.getNo().equals()) {
+			for (int i = 0; )
+			carMap.put(inCar.getNo(), inCar) // 중복 저장이면 어떡하지..............
+			isSuccess = true;
+		} else {
+			isSuccess = false;
+		}
 		return isSuccess;
 	}
 
-	/*
-	 * 1. 전체차량출력
-	 */
+	// 1. 전체차량출력
 	public void print() {
 		
 	}

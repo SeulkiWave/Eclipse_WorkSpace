@@ -25,27 +25,21 @@ public class StudentServiceArrayList {
 	}
 	
 	
-	/*
-	 * 0.학생객체받아서 추가
-	 */
+	// 0. 학생 객체 받아서 추가
 	public void addStudent(Student student) {
 		studentList.add(student);
 	}
 	
-	/*
-	 * 1. 전체학생총점,평균,평점계산
-	 */
+	// 1. 전체 학생 총점, 평균, 평점 계산
 	public void calculate() {
 		for (Student student : studentList) {
 			student.calculateTotal();
 			student.calculateAvg();
 			student.calculateGrade();
 		}
-		
 	}
-	/*
-	 * 2. 전체학생 총점으로 석차계산
-	 */
+	
+	// 2. 전체 학생 총점으로 석차 계산
 	public void calculateRank() {
 		for (int i = 0; i < studentList.size(); i++) {
 			for (int j = 0; j < studentList.size(); j++) {
@@ -54,19 +48,14 @@ public class StudentServiceArrayList {
 				}
 			}
 		}
-		
-		
 	}
 	
-	/*
-	 * 3. 전체학생반환
-	 */
+	// 3. 전체 학생 반환
 	public ArrayList<Student> getStudentList(){
 		return studentList;
 	}
-	/*
-	 * 4. 번호3번 학생한명 반환  
-	 */
+	
+	// 4. 번호 3번 학생 한 명 반환
 	public Student findByStudent(int no) {
 		Student findStudent=null;
 		for (Student student : studentList) {
@@ -77,22 +66,19 @@ public class StudentServiceArrayList {
 		}
 		return findStudent;
 	}
-	/*
-	 * 5. 학점A인 학생들 반환
-	 */
+	
+	// 5. 학점A인 학생들 반환
 	public ArrayList<Student> findByGrade(char grade) {
 		ArrayList<Student> findStudents=new ArrayList<Student>();
 		for (Student student : studentList) {
 			if(student.getGrade()==grade) {
 				findStudents.add(student);
-				
 			}
 		}
 		return findStudents;
 	}
-	/*
-	 * 6. 이름KIM 학생들 반환
-	 */
+	
+	// 6. 이름 KIM 학생들 반환
 	public ArrayList<Student> findByName(String name) {
 		ArrayList<Student> findStudents=new ArrayList<Student>();
 		for (Student student : studentList) {
@@ -103,19 +89,14 @@ public class StudentServiceArrayList {
 		return findStudents;
 	}
 	
-	/*
-	 * 7. 학생총점으로 오름차순정렬(X)
-	 */
+	// 7. 학생 총점으로 오름차순 정렬(X)
 	public void sortByTotAsc() {
 		
 	}
 	
 	
-	/*
-	 8. 학생이름순으로 오름차순정렬(X)
-	 */
+	// 8. 학생 이름순으로 오름차순 정렬(X)
 	public void sortByNameAsc() {
-		
 		
 	}
 	
