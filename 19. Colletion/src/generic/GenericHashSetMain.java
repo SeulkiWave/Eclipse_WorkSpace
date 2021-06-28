@@ -85,15 +85,47 @@ public class GenericHashSetMain {
 			System.out.println(nameTemp);
 		}
 		
+		
 		System.out.println("W R A P P E R - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 		System.out.println("=============== ADD ===============");
+		Set<Integer> lottoSet = new HashSet<Integer>();
+		lottoSet.add(new Integer(34));
+		lottoSet.add(12);
+		lottoSet.add(2);
+		lottoSet.add(41);
+		lottoSet.add(11);
+		System.out.println("# Size: "+lottoSet.size());
+		System.out.println(lottoSet);
 		
+		System.out.println("=============== ADD: 중복 객체 ===============");
+		// 주소 비교를 하지 않고 값 비교를 사용한다... --> 중복 저장 안 됨~
+		isAdd = lottoSet.add(34);
+		System.out.println(" - isAdd: "+isAdd);
+		isAdd = lottoSet.add(12);
+		System.out.println(" - isAdd: "+isAdd);
+		isAdd = lottoSet.add(2);
+		System.out.println(" - isAdd: "+isAdd);
+		isAdd = lottoSet.add(41);
+		System.out.println(" - isAdd: "+isAdd);
+		isAdd = lottoSet.add(11);
+		System.out.println(" - isAdd: "+isAdd);
+		isAdd = lottoSet.add(0212);
+		System.out.println(" - isAdd: "+isAdd);
 		
 		System.out.println("=============== REMOVE ===============");
-		
+		// Set은 index가 없다 . . .. 
+		boolean isRemove = lottoSet.remove(34); // 34라는 값을 가진 객체를 삭제해 ~ 중복삭제는 되지 않는다 . . (중복삭제라는게 애초에 말이 좀 안 됨)
+		System.out.println(" - isRemove: "+isRemove);
+		System.out.println(lottoSet);
+		// String 객체의 주소비교이기 때문에... 애초에 중복 값이 저장될 수 없는...
+		// 제대로 이해하 자 ~ 못 하면 외워~
 		
 		System.out.println("=============== ITERATION ===============");
-		
+		Set<Integer> lotto = new HashSet<Integer>();
+		while (lotto.size() < 6) {
+			lotto.add((int)Math.random()*45+1);
+		}
+		System.out.println(">> lotto: "+lotto); // Set은 중복되는 값이 나올 수 없으니까 index를 재조정할 필요가 없다~
 		
 	}
 

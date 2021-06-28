@@ -1,3 +1,4 @@
+package noGeneric;
 public class Account {
 	/*
 	 * 멤버필드

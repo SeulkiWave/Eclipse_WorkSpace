@@ -84,17 +84,17 @@ public class AccountServiceArrayList {
 	public Account findByNo (int no) {
 		Account findAcc = null;
 		for(int i = 0; i < accList.size(); i++) {
-			findAcc = accList.get(i);
-			if (findAcc.getNo() == no) {
-				return findAcc;
+			if (accList.get(i).getNo() == no) {
+				findAcc = accList.get(i);
 			}
 		}
+		return findAcc;
 	} // 왜 되는거지...
 	
 	// 5. 계좌 잔고 인자로 받아서 잔고 이상인 계좌들 반환
 	public ArrayList<Account> findByBal (int balance) {
 		ArrayList<Account> findAccList=new ArrayList<Account>();
-		for (int i = 0; i < accList.length; i++) {
+		for (int i = 0; i < accList.size(); i++) {
 			Account tempAcc = accList.get(i);
 			if (tempAcc.getBalance() == balance) {
 				findAccList.add(tempAcc);
@@ -106,7 +106,7 @@ public class AccountServiceArrayList {
 	// 8. 6666번 계좌 4000원 입금
 	public void ipGum(int no,int m) {
 		Account tempAcc = null;
-		for (int i = 0 ; i < accList.length; i++) {
+		for (int i = 0 ; i < accList.size(); i++) {
 			tempAcc = accList.get(i);
 			if (tempAcc.getNo() == no) {
 				tempAcc.deposit(m);
@@ -117,7 +117,7 @@ public class AccountServiceArrayList {
 	// 9. 1111번 계좌 5000원 출금
 	public void chulGum(int no,int m) {
 		Account tempAcc = null;
-		for (int i = 0; i < accList.length; i++) {
+		for (int i = 0; i < accList.size(); i++) {
 			tempAcc = accList.get(i);
 			if (tempAcc.getNo() == no) {
 				tempAcc.withDraw(m);
@@ -128,7 +128,7 @@ public class AccountServiceArrayList {
 	// 7. 은행 계좌들 중에 계좌주 이름이 AIM인 계좌들 반환
 	public ArrayList<Account> findByName(String owner) {
 		ArrayList<Account> findAccList=new ArrayList<Account>();
-		for (int i = 0; i < accList.length; i++) {
+		for (int i = 0; i < accList.size(); i++) {
 			Account tempAcc = accList.get(i);
 			if (tempAcc.getOwner().equals(owner)) {
 				findAccList.add(tempAcc);
@@ -141,7 +141,7 @@ public class AccountServiceArrayList {
 	public ArrayList<Account> findByVip(int balance) {
 		ArrayList<Account> findAccList=new ArrayList<Account>();
 		Account tempAcc = null;
-		for (int i = 0; i < accList.length; i++) {
+		for (int i = 0; i < accList.size(); i++) {
 			tempAcc = accList.get(i);
 			if (tempAcc.getBalance() >= balance) {
 				findAccList.add(tempAcc);
@@ -167,8 +167,8 @@ public class AccountServiceArrayList {
 	// 13. 번호로 계좌 삭제
 	public Account deleteByNo(int no) {
 		Account deleteAcc=null;
-		for (int i = 0; i < accList.length; i++) {
-			if (accList.get(i).getNo == no) {
+		for (int i = 0; i < accList.size(); i++) {
+			if (accList.get(i).getNo() == no) {
 				deleteAcc = accList.get(i);
 				accList.remove(i);
 			}

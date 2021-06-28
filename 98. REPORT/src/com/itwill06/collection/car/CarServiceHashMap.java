@@ -3,6 +3,7 @@ package com.itwill06.collection.car;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 public class CarServiceHashMap {
 	
@@ -19,18 +20,24 @@ public class CarServiceHashMap {
 		this.count = count;
 	}
 
-	// 0. 차 객체 인자로 받아서 입차 후 성공-실패 여부 반환 
+	// 0. 차 객체 인자로 받아서 입차 후 성공 - 실패 여부 반환 
 	// - 주차장이 만차이면: count>= carMap.size() 입차 실패!
 	public boolean ipCha(Car inCar) {
-		if (count < carMap.size() && inCar.getNo().equals()) {
-			for (int i = 0; )
-			carMap.put(inCar.getNo(), inCar) // 중복 저장이면 어떡하지..............
-			isSuccess = true;
-		} else {
-			isSuccess = false;
+		Set<String> keyCar = carMap.keySet();
+		Iterator<String> keyIter = keyCar.iterator();
+		String tempKey = inCar.getNo();
+		boolean isAdd = true;
+		
+		while (keyIter.hasNext()) {
+			if (carMap.size() < count && !(tempKey.equals(keyIter))) {
+				carMap.put(tempKey, inCar);
+				isAdd = true;
+				break;
+			}
 		}
-		return isSuccess;
+		return isAdd;
 	}
+		
 
 	// 1. 전체차량출력
 	public void print() {

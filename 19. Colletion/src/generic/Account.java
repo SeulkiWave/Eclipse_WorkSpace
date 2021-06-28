@@ -1,5 +1,6 @@
 package generic;
-public class Account {
+public class Account implements Comparable<Account>{
+	// <>는 어떤 .. 거로 정렬할건지 ... 하라는거 아닐까.. 
 	/*
 	 * 멤버필드
 	 */
@@ -89,6 +90,31 @@ public class Account {
 
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+	
+	
+	// Compare this object with the specified object for order.
+	// Returns a negative integer, zero, or a positive integer
+	// 	as this object is less than, equals to, or greater than the specified object.
+	@Override
+	public int compareTo(Account nextAcc) { // Comparable Override가 필요하다
+		// 현재 Account와 대입받은 nextAcc를 비교한다
+		
+		if (this.balance > nextAcc.getBalance()) {
+			return 1;
+		} else {
+			return -1;
+		}
+		
+		/*
+		if (this.owner.compareTo(nextAcc.getOwner()) > 0) { // A.compa(B): A-B, charAt(i) * 무한루프보다 효율적이다...
+			// 어떤 조건일 때 바꾸고 싶으면 양수를 return, 안 바꿀 거면 0을 리턴해라! : 양수는 암거나 무조건 바꿈~
+			return 1;
+		} else {
+			return -1; // 바꾸지 마~
+		}
+		// return 0; // 그닥 중요한 애는 아닌데 1이 아니면 안 바꾸는 역할로 냅두는 거겟죠...
+		 */
 	}
 
 }
