@@ -1,3 +1,4 @@
+// OuterClass의 객체가 만들어지면 그떄 OuterClass의 멤버 필드, 메소드가 사용가능하고 innerClass도 그떄 사용이 가능하다~
 
 public class OuterClass {
 	// 클래스의 구성요소
@@ -5,6 +6,21 @@ public class OuterClass {
 	public void outerMemberMethod() { // 인스턴스 멤버 메소드
 		System.out.println("OuterClass.outerMemberMethod()");
 	}
+	
+	// 외부 클래스에서 내부 클래스 사용
+	public void outerInnerClassUse() {
+		// InnerClass 객체 생성
+		// OuterClass.InnerClass innerClassOjbect = new InnerClass();
+		InnerClass innerClassObject =  new InnerClass(); // outerClass.가 생략되어 있음!
+		
+		// InnerClass 객체 멤버 사용 : outer에서만 사용이 가능하다.. 밖에서는 outerClass. 라는 주소를 붙여줘야 함!
+		innerClassObject.innerMemberField = 123456;
+		innerClassObject.innerMemberMethod();
+		
+		
+	}
+	
+	
 	// 인스턴스 멤버 !클래스! - Nested class / Inner Class / 내부 클래스
 	public class InnerClass { // 클래스 안에 클래스가 규정define됨
 		public int innerMemberField;
