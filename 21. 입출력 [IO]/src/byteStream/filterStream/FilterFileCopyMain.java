@@ -1,20 +1,29 @@
-package byteStream.nodeStream;
+package byteStream.filterStream;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class FileCopyMain {
+public class FilterFileCopyMain {
 
-	public static void main(String[] args) throws Exception {
-		FileInputStream fis=new FileInputStream("file_exe.exe");
-		FileOutputStream fos=new FileOutputStream("file_exe_copy.exe");
+	public static void main(String[] args) 
+			throws Exception {
+		BufferedInputStream bis=
+				new BufferedInputStream(
+						new FileInputStream(
+								"file_exe.exe"));
+		BufferedOutputStream bos=
+				new BufferedOutputStream(
+						new FileOutputStream(
+								"file_exe_copy.exe"));
 		int count=0;
 		int starCount=0;
 		long startTime=System.currentTimeMillis();
 		while(true) {
-			int readByte = fis.read();
+			int readByte=bis.read();
 			if(readByte==-1)break;
-			fos.write(readByte);
+			bos.write(readByte);
 			count++;
 			if(count%1024==0) {
 				System.out.print("★");
@@ -23,10 +32,9 @@ public class FileCopyMain {
 					System.out.println();
 				}
 			}
-			
-		}
-		fis.close();
-		fos.close();
+		}//end while
+		bis.close();
+		bos.close();
 		
 		long endTime=System.currentTimeMillis();
 		long duration=endTime-startTime;
@@ -35,6 +43,6 @@ public class FileCopyMain {
 					+count+" bytes copy");
 		System.out.println("took "+duration+" ms");
 		
-	}
+	}//end main
 
-}
+}//end class
