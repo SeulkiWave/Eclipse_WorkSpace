@@ -1,6 +1,6 @@
-package basic;
+package basic.driver;
 
-public class OracleDriverLoadingMain {
+public class DriverLoadingMain {
 
 	public static void main(String[] args) throws Exception {
 		

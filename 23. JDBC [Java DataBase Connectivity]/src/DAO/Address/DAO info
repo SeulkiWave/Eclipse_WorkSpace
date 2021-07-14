@@ -1,0 +1,18 @@
+DAO (Data Access Object)
+ - 회원들의 데이터를 저장하고 있는 파일(테이블)에 CRUD(Create, Read, Update, Delete) 작업을 할수있는 단위 메소드를 가지고 있는 클래스
+ - MemberService 객체의 요청(메소드 호출)을 받아서 Data Access(File, DB)에 관련된 단위기능(CRUD)을 수행하는 객체
+ 
+ /*
+VO(Value Object),DTO(Data Transfer Object)
+  	- 회원 관리를 위하여 필요한 도메인 클래스(VO,DTO)
+  	- 회원 객체 한명의 데이터를 가지고 있다.(VO)
+  	- 회원 객체 한명의 데이터를 저장하기 위한 멤버 변수를 가지고 있다
+  	- 회원 테이블과 동일한 속성column을 멤버 필드로 가지는 객체
+ */
+
+ /*
+ * - 회원/주소록 관리 비즈니스 로직(업무)을 수행하는 클래스
+ * - GUI 객체(스윙,서블릿,JSP)에서 직접 접근(메소드 호출)하는 클래스
+ * - DAO 객체를 이용해서 데이터에 접근하는 클래스
+ */
+ 

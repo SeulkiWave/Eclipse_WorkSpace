@@ -1,4 +1,4 @@
-package basic;
+package basic.driver;
 
 public class StaticBlockClass {
 	// 클래스의 구성 요소: 멤버 필드(변수), 멤버 메소드, 생성자, "정적 블록 (new!!)"

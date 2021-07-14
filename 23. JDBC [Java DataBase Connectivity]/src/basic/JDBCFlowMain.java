@@ -20,6 +20,7 @@ public class JDBCFlowMain {
 					-> DriverManager 객체에 등록
 					-> 등록된 Driver를 사용해 driverClass로 연결 객체를 요구함.. (url 필요)
 		*/
+		
 		Class.forName(driverClass);
 		System.out.println("1. Driver Class Loading");
 		
