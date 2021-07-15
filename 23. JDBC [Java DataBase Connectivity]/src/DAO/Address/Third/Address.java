@@ -19,17 +19,15 @@ ADDRESS          VARCHAR2(60)
 
 public class Address {
 	
-	// Address Table column과 대응하는 멤버 필드(변수)를 만들기..
 	private int num;
 	private String id;
 	private String name;
 	private String phone;
 	private String address;
 	
+	
 	// Constructor
-	public Address() {
-		// TODO Auto-generated constructor stub
-	}
+	public Address() {}
 	public Address(int num, String id, String name, String phone, String address) {
 		this.num = num;
 		this.id = id;
@@ -37,6 +35,8 @@ public class Address {
 		this.phone = phone;
 		this.address = address;
 	}
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -67,4 +67,12 @@ public class Address {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Address [num=" + num + ", id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address
+				+ "]";
+	}
+	
 }

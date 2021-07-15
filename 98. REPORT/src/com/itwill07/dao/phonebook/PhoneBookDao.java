@@ -2,6 +2,7 @@ package com.itwill07.dao.phonebook;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -18,13 +19,18 @@ public class PhoneBookDao {
 		String password = "javadeveloper7";
 		
 		// Insert
-		String insertSQL = "insert into phonebook values(phonebook_no_seq.nextval,'"+tmpP.getName()+"','"+tmpP.getPhone()+"')";
+		String insertSQL = "insert into phonebook values(phonebook_no_seq.nextval, ?, ?)";
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
-		Statement stmt = con.createStatement();
-		int insertRowCount = stmt.executeUpdate(insertSQL);
+		
+		// Statement stmt = con.createStatement();
+		PreparedStatement pstmt1 = con.prepareStatement(insertSQL);
+		pstmt1.setString(1, tmpP.getName());
+		pstmt1.setString(2, tmpP.getPhone());
+		
+		int insertRowCount = pstmt1.executeUpdate(insertSQL);
 		System.out.println(">> " + insertRowCount + " 행 insert");
-		stmt.close();
+		pstmt1.close();
 		con.close();
 	}
 	
@@ -35,12 +41,19 @@ public class PhoneBookDao {
 		String user = "javadeveloper7";
 		String password = "javadeveloper7";
 		
-		String updateSQL = "update phonebook name='"+tempP.getName()+"',phone='"+tempP.getPhone()+" where no = "+tempP.getNum();
-		Class.forName(driverClass); // 1
-		Connection con = DriverManager.getConnection(url, user, password); // 2
-		Statement state = con.createStatement(); // 3
-		int updateRowCount = state.executeUpdate(updateSQL);
+		String updateSQL = "update phonebook name= ?, phone=? where no = ?";
+		Class.forName(driverClass);
+		Connection con = DriverManager.getConnection(url, user, password);
+		// Statement state = con.createStatement();
+		PreparedStatement pstmt2 = con.prepareStatement(updateSQL);
+		pstmt2.setString(1, tempP.getName());
+		pstmt2.setString(2, tempP.getPhone());
+		pstmt2.setInt(3, tempP.getNum());
+		int updateRowCount = pstmt2.executeUpdate(updateSQL);
 		System.out.println(">> "+updateRowCount);
+		
+		pstmt2.close();
+		con.close();
 	}
 	
 	// delete
@@ -50,12 +63,18 @@ public class PhoneBookDao {
 		String user = "javadeveloper7";
 		String password = "javadeveloper7";
 		
-		String deleteSQL = "delete phonebook where no="+no;
+		String deleteSQL = "delete phonebook where no= ?";
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
-		Statement state = con.createStatement();
-		int deleteRowCount = state.executeUpdate(deleteSQL);
+		// Statement state = con.createStatement();
+		PreparedStatement pstmt3 = con.prepareStatement(deleteSQL);
+		pstmt3.setInt(1, no);
+		
+		int deleteRowCount = pstmt3.executeUpdate(deleteSQL);
 		System.out.println(">> "+deleteRowCount);
+		
+		pstmt3.close();
+		con.close();
 	}
 	
 	// select by number
@@ -65,11 +84,15 @@ public class PhoneBookDao {
 		String user = "javadeveloper7";
 		String password = "javadeveloper7";
 		
-		String selectSQL = "select num, name, phone from phonebook where no="+no;
+		String selectSQL = "select num, name, phone from phonebook where no= ?";
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(selectSQL);
+		
+		// Statement stmt = con.createStatement();
+		PreparedStatement pstmt4 = con.prepareStatement(selectSQL);
+		pstmt4.setInt(1, no);
+		
+		ResultSet rs = pstmt4.executeQuery(selectSQL);
 		while (rs.next()) {
 			int num = rs.getInt("num");
 			String name = rs.getString("name");
@@ -78,7 +101,7 @@ public class PhoneBookDao {
 		}
 		
 		rs.close();
-		stmt.close();
+		pstmt4.close();
 		con.close();
 	}
 	
@@ -92,8 +115,10 @@ public class PhoneBookDao {
 		String selectSQL = "select num, name, phone from phonebook";
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(selectSQL);
+		// Statement stmt = con.createStatement();
+		PreparedStatement pstmt5 = con.prepareStatement(selectSQL);
+		
+		ResultSet rs = pstmt5.executeQuery(selectSQL);
 		while (rs.next()) {
 			int num = rs.getInt("num");
 			String name = rs.getString("name");
@@ -101,7 +126,7 @@ public class PhoneBookDao {
 			System.out.println(num + "\t" + name + "\t" + phone);
 		}
 		rs.close();
-		stmt.close();
+		pstmt5.close();
 		con.close();
 	}
 	

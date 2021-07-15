@@ -1,5 +1,7 @@
 package DAO.Address.Third;
 
+import java.util.ArrayList;
+
 public class AddressDAO3Main {
 
 	public static void main(String[] args) throws Exception{
@@ -13,7 +15,14 @@ public class AddressDAO3Main {
 		adrDao3.selectByNum(3);
 		System.out.println();
 		
-		System.out.println(">> insert: "); // 객체를 모아서 여러 데이터를 갖고 있는 한 개의 객체로 만든다?
+		System.out.println(">> selectAll");
+		AddressDAO3 addressDao3 = new AddressDAO3();
+		ArrayList<Address> addressList = addressDao3.selectAll();
+		for (Address address : addressList) {
+			System.out.println(address);
+		}
+		
+		System.out.println(">> insert: ");
 		Address insertAdd = new Address(0, "aaa", "김슬기", "123-1234", "원주시");
 		adrDao3.insert(insertAdd);
 		System.out.println();
