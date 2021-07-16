@@ -12,7 +12,7 @@ public class PhoneBookDao {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void insert(PhoneBook tmpP) throws Exception {
+	public int insert(PhoneBook tmpP) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "javadeveloper7";
@@ -32,10 +32,12 @@ public class PhoneBookDao {
 		System.out.println(">> " + insertRowCount + " 행 insert");
 		pstmt1.close();
 		con.close();
+		
+		return insertRowCount;
 	}
 	
 	// update
-	public void update(PhoneBook tempP) throws Exception {
+	public int update(PhoneBook tempP) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "javadeveloper7";
@@ -54,10 +56,12 @@ public class PhoneBookDao {
 		
 		pstmt2.close();
 		con.close();
+		
+		return updateRowCount;
 	}
 	
 	// delete
-	public void delete(int no) throws Exception {
+	public int delete(int no) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "javadeveloper7";
@@ -75,6 +79,8 @@ public class PhoneBookDao {
 		
 		pstmt3.close();
 		con.close();
+		
+		return deleteRowCount;
 	}
 	
 	// select by number

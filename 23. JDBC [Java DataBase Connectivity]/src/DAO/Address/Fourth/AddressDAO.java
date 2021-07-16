@@ -5,7 +5,7 @@
  		- MemberService 객체의 요청(메소드 호출)을 받아서 Data Access(File, DB)에 관련된 단위기능(CRUD)을 수행하는 객체
  */
 
-package DAO.Address.Third;
+package DAO.Address.Fourth;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class AddressDAO3 {
+import DAO.Address.Third.Address;
+
+public class AddressDAO {
 	/*  --> 귀찮아서...
 	public void insert(String id, String name, String phone, String address) throws Exception {
 		
@@ -33,17 +35,27 @@ public class AddressDAO3 {
 	}
 	*/
 	
+	private DataSource dataSource;
+	public AddressDAO() {
+		this.dataSource = new DataSource();
+	}
+	
 	public int insert(Address insertAdd) throws Exception {
+		/* 모든 DAO 메소드가 공통으로 쓰기 때문에.. 클래스로 뺴주기?
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper7";
-		String password = "javadeveloper7";
+		String user = "javadeveloper37";
+		String password = "javadeveloper37";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
+		*/
 		
 		String insertSQL = "insert into address values(address_no_seq.nextval, ?, ?, ?, ?)";
 		// id, name, phone, address
+		
+		Connection con = dataSource.getConnection();
+		
 		PreparedStatement pstmt1 = con.prepareStatement(insertSQL);
 		pstmt1.setString(1, insertAdd.getId());
 		pstmt1.setString(2, insertAdd.getName());
@@ -61,8 +73,8 @@ public class AddressDAO3 {
 	public int deleteByNum(int no) throws Exception{ // 외부에서 변수를 받기 위해 변수를 선언하장
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper7";
-		String password = "javadeveloper7";
+		String user = "javadeveloper37";
+		String password = "javadeveloper37";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
@@ -98,14 +110,10 @@ public class AddressDAO3 {
 	*/
 	
 	public int update (Address updateAdd) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper7";
-		String password = "javadeveloper7";
 		
 		String updateSQL = "update address set id = ?, name = ?, phone = ?, address = ? where no = ?";
-		Class.forName(driverClass); // 1
-		Connection con = DriverManager.getConnection(url, user, password);
+		
+		Connection con = dataSource.getConnection();
 		
 		PreparedStatement pstmt3 = con.prepareStatement(updateSQL);
 		pstmt3.setString(1, updateAdd.getId());
@@ -123,16 +131,10 @@ public class AddressDAO3 {
 	}
 	
 	public Address selectByNum(int num) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper7";
-		String password = "javadeveloper7";
 		
 		Address findAdd = null;
-		
 		String selectSql = "select no, id, name, phone, address from address where no= ?";
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		
 		PreparedStatement pstmt4 = con.prepareStatement(selectSql);
 		pstmt4.setInt(1, num);
@@ -155,20 +157,14 @@ public class AddressDAO3 {
 	}
 	
 	public ArrayList<Address> selectAll() throws Exception { // Address는 DTO, ArrayList는 DTO의 Collection
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper7";
-		String password = "javadeveloper7";
 		
-		ArrayList<Address> addLists = new ArrayList<Address>();
-		
-		String selectSQL = "select * from address"; // 이거 preparedStatement로 넣을 게 없는데 굳이.. 바꿔야 하는걸까...
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		/*
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(selectSQL);
 		*/
+		ArrayList<Address> addLists = new ArrayList<Address>();
+		String selectSQL = "select * from address";
 		 PreparedStatement pstmt5 = con.prepareStatement(selectSQL);
 		 ResultSet rs = pstmt5.executeQuery();
 		
@@ -183,9 +179,7 @@ public class AddressDAO3 {
 			addLists.add(tempAdd);
 			// System.out.println(no + "\t" + id + "\t" + name + "\t" + phone + "\t" + address);
 		}
-		rs.close();
-		pstmt5.close();
-		con.close();
+		dataSource.releaseConnection(con);
 		
 		return addLists;
 	}
