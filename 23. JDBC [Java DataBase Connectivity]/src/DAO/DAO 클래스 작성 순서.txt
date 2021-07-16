@@ -1,0 +1,18 @@
+0. 테이블 설계 : Create, drop							 --> DDL: member_create_drop.sql 파일 생성
+
+1. SQL문 작성 : Insert, Update, Delete, Select --> member_insert_update_delete_select.sql 파일 생성 
+
+2. DTO 클래스 작성
+
+3. DAO 클래스 작성
+	- 테이블에 insert, update, delete, select By PK, selectAll 단위 메소드 만들기
+	- 단위 메소드를 생성한다. 인자, 반환타입도 정의한다..
+
+	
+4. << 반드시 테스트 해볼 것! >>
+	public class MemberDAOTestMain {
+		public static void main(String[] args){
+			MemberDAO memberDao = new MemberDAO();
+			memberDAO.insertGuest();
+		}
+	}
