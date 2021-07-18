@@ -13,8 +13,8 @@ public class DataSource {
 		/*********************DB접속정보*********************/
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "javadeveloper00";
-		String password = "javadeveloper00";
+		String user = "javadeveloper37";
+		String password = "javadeveloper37";
 		/*******************************************/
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url, user, password);
