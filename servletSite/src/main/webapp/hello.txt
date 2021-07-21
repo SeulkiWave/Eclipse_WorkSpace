@@ -1,0 +1,2 @@
+Hello static resource1!
+Hello static resource2!
